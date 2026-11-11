@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck Roulette</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo">◈</span>
+    <div>
+      <h1>Deck Roulette</h1>
+      <p class="sub">Deck dei personaggi dei giochi Yu-Gi-Oh! per DS e PSP · esportazione .ydk per Master Duel</p>
+    </div>
+  </div>
+  <div class="meta" id="meta"></div>
+</header>
+
+<nav class="games" id="games"></nav>
+
+<main class="layout">
+  <section class="panel wheel-panel" id="wheelPanel">
+    <div class="wheel-head">
+      <h2 id="gameTitle">—</h2>
+      <div class="mode" role="radiogroup" aria-label="Modalità">
+        <label><input type="radio" name="mode" value="char" checked> Personaggio → Deck</label>
+        <label><input type="radio" name="mode" value="deck"> Deck casuale</label>
+      </div>
+    </div>
+
+    <div class="wheel-wrap">
+      <div class="pointer" aria-hidden="true"></div>
+      <canvas id="wheel" width="560" height="560" aria-label="Ruota"></canvas>
+      <button id="spin" class="spin">GIRA</button>
+    </div>
+    <div class="ticker" id="ticker">&nbsp;</div>
+    <div class="stage" id="stage"></div>
+
+    <details class="filters">
+      <summary>Filtri</summary>
+      <div class="frow">
+        <label><input type="checkbox" id="onlyMd"> Solo deck interamente disponibili in Master Duel</label>
+        <label><input type="checkbox" id="noRepeat"> Escludi i deck già estratti</label>
+        <button class="link" id="resetHistory" type="button">azzera estratti</button>
+      </div>
+      <div class="frow" id="levelRow">
+        <span>Livello deck</span>
+        <label>da <input type="number" id="lvMin" min="1" max="10" value="1"></label>
+        <label>a <input type="number" id="lvMax" min="1" max="10" value="10"></label>
+      </div>
+      <div class="frow">
+        <input type="search" id="charSearch" placeholder="Cerca personaggio…">
+        <button class="link" id="allOn" type="button">tutti</button>
+        <button class="link" id="allOff" type="button">nessuno</button>
+        <span class="count" id="poolCount"></span>
+      </div>
+      <div class="chars" id="chars"></div>
+    </details>
+  </section>
+
+  <section class="panel result-panel" id="result">
+    <div class="empty">
+      <p>Scegli un gioco e gira la ruota.</p>
+      <p class="hint">Il deck estratto comparirà qui con la lista completa delle carte e il file <b>.ydk</b> da importare.</p>
+    </div>
+  </section>
+</main>
+
+<aside class="history panel">
+  <h3>Ultime estrazioni</h3>
+  <ol id="history"></ol>
+</aside>
+
+<footer class="foot">
+  Dati: liste deck da <a href="https://yugipedia.com" target="_blank" rel="noopener">Yugipedia</a>,
+  codici carta da <a href="https://ygoprodeck.com" target="_blank" rel="noopener">YGOPRODeck</a>.
+  Le carte esclusive dei videogiochi (Speed Spell, carte dell'anime, ecc.) non hanno un codice e non entrano nel .ydk.
+</footer>
+
+<script src="data/decks.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
